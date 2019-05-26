@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Redis</title>
+</head>
+<body>
+    <h3>What is redis? What makes Redis special? What types of problems does it solve <strong>(slide 1)</strong>?</h3>
+    <p>Redis is often described as an in-memory persistent key-value store. Redis exposes five different data structures <strong>(slide 2)</strong> but only one of which is a typical key-value structure.</p>
+    <p>Understanding these five data structures, how they work, what methods they expose is the key to understanding Redis.</p>
+    <p>If we were to apply this data structure concept to the relational world, we could say  that databases expose a single data structure - <strong>tables</strong>.  Tables are both complex and flexible. But not everything is as simple, or as fast, as it ought to be.</p>
+    <p>Redis has the same basic concept of a database. A database contains a set of data. The typical use-case for a database  is to group all of an application’s data together and to keep it separate from another application’s.</p>
+    <p>Redis is more than just a key-value store, but at its core,  every one of Redis’ data structures has at least a key and a value. Keys are how you identify pieces of data.</p>
+    <p>This key <strong>(slide 3)</strong> is used to store information about user <strong>Vasya</strong>.</p>
+    <p>Values represent the actual data associated with the key. They can be anything. Sometimes it may be strings, sometimes integers, sometimes it may be serialized objects (in JSON, XML or some other format). Redis treats values as a byte array  and doesn’t care what they are.</p>
+    <p>This <strong>(slide 4)</strong> is the basic anatomy of a Redis command. First we have the actual command, in this case <strong>set</strong>. Next we have its parameters.   The set command takes two parameters: the key we are setting and the value we are setting it to.</p>
+    <p>Can you guess how to retrieve this value? Of course, you must use command <strong>get</strong> <strong>(slide 5)</strong>.</p>
+    <p>So, keys and values are fundamental concepts,   and the get and set commands   are the simplest way to play with them.</p>
+    <p>Keys are everything and values are nothing.  In other words,  Redis doesn’t allow you to query an object’s values.  For example,  we can’t find the user   which live on planet earth (this is query limitations).</p>
+    <p>Redis keeps all your data in memory.</p>
+    <p>So, query limitations, data structures and Redis’ way to store data in memory together give <strong>speed</strong>.</p>
+    <p>Some people think “Of course Redis is fast, everything’s in memory.” But that’s only part of it.   The real reason is its specialized data structures. Redis’ performance to be measured in tens of thousands, or hundreds  of thousands of operations per second.</p>
+    <p><strong>The important thinks are:</strong> Keys are strings   which identify pieces of data (values). Values are byte arrays   that Redis doesn’t care about. Redis exposes   five data structures (Strings, Hashes, Lists, Sets, Sorted Sets).</p>
+    <h3>Strings <strong>(slide 6)</strong></h3>
+    <p>Strings are the most basic data structures available in Redis.When you think of a key-value pair, you are thinking of strings.We already saw a common use-case for strings,  storing instances of objects by key.</p>
+    <h3>Hashes <strong>(slide 7)</strong></h3>
+    <p>Hashes are a good example   of why calling Redis a key-value store   isn’t quite accurate. Hashes are much like strings. The important difference  is that they provide an extra level of indirection: a field. The hash equivalents of set and get are commands <strong>hset</strong> and <strong>hget</strong>.</p>
+    <p>We can also set multiple fields at once,   get multiple fields at once,   get all fields and values (commands <strong>hmset</strong>, <strong>hmget</strong>, <strong>hgetall</strong>).</p>
+    <p>As you can see, hashes give us a bit more control over strings. We can pull, update, delete pieces of data,   without having to get or write the entire value.</p>
+    <h3>Lists <strong>(slide 8)</strong></h3>
+    <p>Lists let you store and manipulate an array of values for a given key.   You can add values to the list,  get the first or last value  and manipulate values at a given index.  Lists maintain their order and have effective index-based operations. </p>
+    <p>For example we could have a new users list which tracks the newest registered users to our site. This case:  we push a new user  at the front of the list (command <strong>rpush</strong>).</p>
+    <h3>Sets <strong>(slide 9)</strong></h3>
+    <p>Sets are used to store unique values and provide a number of set-based operations, like unions. Sets aren’t ordered but they provide efective value-based operations.A friend’s list is the classic example of using a set (command <strong>sadd</strong>).</p>
+    <p>Regardless of how many friends a user has, we can tell whether user1 is a friend of user2 or not (command <strong>sismember</strong>).</p>
+    <h3>Sorted Sets <strong>(slide 10)</strong></h3>
+    <p>The last and most powerful data structure are sorted sets. If hashes are like strings but with fields, then sorted sets are like sets    but with a score. The score provides sorting and ranking. If we wanted a ranked list of friends, we might to do command  <strong>zadd</strong>.</p>
+    <p>If you want to find how many friends <strong>Valera</strong> has with a score of 90 or over  - you must use command <strong>zcount</strong>. The most obvious use-case for sorted sets  is a leaderboard system.</p>
+    <p>In a lot of ways, Redis represents a simplification in the way to work with data. It peels away much of the complexity  and abstraction  available in other systems. In many cases this makes Redis the wrong choice. But in others  it can feel like Redis was custom-built for your data.</p>
+</body>
+</html>
