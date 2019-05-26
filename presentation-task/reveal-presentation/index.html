@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section><h1>Redis</h1></section>
+				<section>
+					<ul>
+						<li>Strings</li>
+						<li>Hashes</li>
+						<li>Lists</li>
+						<li>Sets</li>
+						<li>Sorted Sets</li>
+					</ul>
+				</section>
+				<section>users:vasya</section>
+				<section style="text-align: left">set users:vasya '{"name": "vasya", "planet": "earth", "likes": ["potatoes"]}'</section>
+				<section>get users:vasya</section>
+				<section>
+					<h3>1.Strings</h3>
+					<br>
+					<div style="text-align: left">
+					set users:vasya '{"name": "vasya", "planet": "earth", "likes": ["potatoes"]}'
+					</div>
+				</section>
+				<section>
+					<h3>2.Hashes</h3>
+					<br>
+					<div style="text-align: left">
+					hset users:valera powerlevel 9000<br>
+					hget users:valera powerlevel<br><br>
+					hmset users: valera race alien age 500<br>
+					hmget users: valera race powerlevel<br>
+					hgetall users: valera
+					</div>
+				</section>
+				<section>
+					<h3>3.Lists</h3>
+					<br>
+					<div style="text-align: left">
+					rpush newusers valera
+					</div>
+				</section>
+				<section>
+					<h3>4.Sets</h3>
+					<br>
+					<div style="text-align: left">
+					sadd friends:vasya valera kristina vova<br>
+					sadd friends:dima vova  kristina gena<br><br>
+					sismember friends: vasya kristina<br>
+					sismember friends: vasya petja
+					</div>
+				</section>
+				<section>
+					<h3>5.Sorted Sets</h3>
+					<br>
+					<div style="text-align: left">
+					zadd friends:valera 70 vasya 90 kristina 95 vova 75<br><br>
+					zcount friends: valera 90 100
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
